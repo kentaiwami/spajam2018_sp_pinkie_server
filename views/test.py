@@ -9,4 +9,4 @@ app = Blueprint('test_bp', __name__)
 def hello():
     user = session.query(User).all()
 
-    return "Hello World! " + str(len(user))
+    return jsonify({'msg': 'Hello World', 'count': len(user)}), 200
