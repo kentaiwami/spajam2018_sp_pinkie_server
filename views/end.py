@@ -32,7 +32,7 @@ def put():
 
     user_id = walk.user_id
 
-    sql = 'select from_unixtime(round(unix_timestamp(created_at) div(5 * 60)) *(5 * 60)) as timekey, count(*) from pull where user_id = %s group by timekey' % (user_id)
+    sql = 'select from_unixtime(round(unix_timestamp(created_at) div(5 * 60)) *(5 * 60)) as timekey, count(*) from pull, walk where pull.user_id = %s and pull.created_at BETWEEN (SELECT started_at FROM `walk` WHERE user_id = %s order by started_at desc LIMIT 1) and (SELECT ended_at FROM `walk` WHERE user_id = %s order by ended_at desc LIMIT 1) group by timekey;' % (user_id, user_id, user_id)
     sql_res = session.execute(sql)
 
     results = []
