@@ -7,7 +7,7 @@ from jsonschema import validate, ValidationError
 app = Blueprint('pull_bp', __name__)
 
 
-@app.route('/api/pull', methods=['GET'])
+@app.route('/api/pull/test', methods=['GET'])
 # getだけど強制登録
 def get():
     user = session.query(User).filter(User.id == 1).one_or_none()
