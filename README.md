@@ -122,3 +122,21 @@ response：
     ]
 }
 ```
+
+
+#### リスト一覧表示
+```
+method：GET
+endpoint：/api/walk/list?user_id=1
+request：{}
+response：
+{
+    "results": [
+        {
+            "count": 13,
+            "date": "2018-05-12",
+            "id": 4
+        }
+    ]
+}
+```

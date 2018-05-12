@@ -4,7 +4,7 @@ from flask_basicauth import BasicAuth
 from flask_migrate import Migrate
 from model import db
 from config import secret_key
-from views import test, pull, start, end, now
+from views import test, pull, start, end, now, prev_walk, walk_list
 from admin import AuthException, init_admin
 
 
@@ -22,7 +22,7 @@ def init_app():
 
 def add_bp(app_obj):
     modules_define = [
-        test.app, pull.app, start.app, end.app, now.app
+        test.app, pull.app, start.app, end.app, now.app, prev_walk.app, walk_list.app
     ]
 
     for bp_app in modules_define:
