@@ -46,7 +46,7 @@ def get_detail(id):
     if walk is None:
         return jsonify({'msg': 'Walk Not Found'}), 404
 
-    sql = 'select from_unixtime(round(unix_timestamp(created_at) div(5 * 60)) *(5 * 60)) as timekey, count(*) from pull where user_id = %s group by timekey' % (user.id)
+    sql = 'select from_unixtime(round(unix_timestamp(created_at) div(5 * 60)) *(5 * 60)) as timekey, count(*) from pull, walk where pull.user_id = %s and pull.created_at BETWEEN (SELECT started_at FROM `walk` WHERE user_id = %s AND id = %s) and (SELECT ended_at FROM `walk` WHERE user_id = %s AND id = %s) group by timekey;' % (user.id, user.id, walk.id, user.id, walk.id)
     sql_res = session.execute(sql)
 
     results = []
