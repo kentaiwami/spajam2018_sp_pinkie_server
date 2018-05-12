@@ -30,4 +30,14 @@ def put():
     session.commit()
     session.close()
 
-    return jsonify({'msg': 'Success'}), 200
+    user_id = walk.user_id
+
+    sql = 'select from_unixtime(round(unix_timestamp(created_at) div(5 * 60)) *(5 * 60)) as timekey, count(*) from pull where user_id = %s group by timekey' % (user_id)
+    sql_res = session.execute(sql)
+
+    results = []
+
+    for res in sql_res:
+        results.append({'time': str(res[0]), 'count': res[1]})
+
+    return jsonify({'results': results}), 200
