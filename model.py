@@ -24,8 +24,8 @@ class Pull(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
 
-class Work(db.Model):
-    __tablename__ = 'work'
+class Walk(db.Model):
+    __tablename__ = 'walk'
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
