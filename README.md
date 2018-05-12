@@ -1,18 +1,27 @@
 # API
-#### Hogehoge
+
+#### 引っ張りの登録（ユーザをサーバ側で勝手に指定バージョン）
+```
+method：GET
+endpoint：api/pull/test
+request：
+{}
+response：
+{
+    "msg": "Success"
+}
+```
+
+#### 引っ張りの登録
 ```
 method：POST
-endpoint：api/user
+endpoint：api/pull
 request：
 {
-    "hoge1": "hogehoge",
-    "hoge2": 30,
-    "hoge3": 100,
-    "hoge4": [10, 20, 30]
+    "id": 1
 }
 response：
 {
-    "hoge1": "hogehoge",
-    "hoge2": 1
+    "msg": "Success"
 }
 ```
