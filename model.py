@@ -22,3 +22,12 @@ class Pull(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+
+
+class Work(db.Model):
+    __tablename__ = 'work'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    started_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    ended_at = db.Column(db.DateTime, nullable=True, default=None)
