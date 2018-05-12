@@ -25,16 +25,18 @@ def get():
 
 @app.route('/api/pull', methods=['POST'])
 def post():
-    schema = {'type': 'object',
-              'properties':
-                  {'id': {'type': 'integer', 'minimum': 0}},
-              'required': ['id']
-              }
+    # schema = {'type': 'object',
+    #           'properties':
+    #               {'id': {'type': 'integer', 'minimum': 0}},
+    #           'required': ['id']
+    #           }
 
-    try:
-        validate(request.json, schema)
-    except ValidationError as e:
-        return jsonify({'msg': e.message}), 400
+    # try:
+    #     validate(request.json, schema)
+    # except ValidationError as e:
+    #     return jsonify({'msg': e.message}), 400
+
+    # return str(type(request.json['id']))
 
     user = session.query(User).filter(User.id == request.json['id']).one_or_none()
 
