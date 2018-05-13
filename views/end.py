@@ -16,6 +16,7 @@ def put():
               'required': ['walk_id']
               }
 
+    # return jsonify({'hoge': request.json['walk_id']}), 200
     try:
         validate(request.json, schema)
     except ValidationError as e:

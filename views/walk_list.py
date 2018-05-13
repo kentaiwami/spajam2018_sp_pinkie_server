@@ -19,7 +19,7 @@ def get():
     if user is None:
         return jsonify({'msg': 'User Not Found'}), 404
 
-    walks = session.query(Walk).filter(Walk.user_id == user.id).order_by(Walk.ended_at.desc())
+    walks = session.query(Walk).filter(Walk.user_id == user.id).order_by(Walk.started_at.desc())
 
     results = []
     for walk in walks:
@@ -52,6 +52,6 @@ def get_detail(id):
     results = []
 
     for res in sql_res:
-        results.append({'time': str(res[0]), 'count': int(res[1] / 10)})
+        results.append({'time': '{0:%H:%M}'.format(res[0]), 'count': int(res[1] / 10)})
 
     return jsonify({'results': results}), 200
